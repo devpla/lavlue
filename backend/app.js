@@ -1,29 +1,26 @@
-var app = require("express")();
-var server = require("http").createServer(app);
+const app = require("express")();
+const server = require("http").createServer(app);
 // http server를 socket.io server로 upgrade
-var io = require("socket.io")(server, {
+const io = require("socket.io")(server, {
   pingTimeout: 1000,
-});
-
-// setting cors
-app.all("/*", function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
+  cors: {
+    origin: "http://localhost:8080",
+    methods: ["GET", "POST"],
+  },
 });
 
 // localhost:3000 서버에 접속하면 client로 메세지 전송
 app.get("/", function (req, res) {
-  res.sendFile("Hellow Chating App Server");
+  res.send("Hello");
 });
 
 //connection event handler
 io.on("connection", function (socket) {
   // client로부터의 메시지가 수신되면
-  socket.on("chat", function (data) {
+  socket.on("chat", (data) => {
     console.log("Message from %s: %s", data.name, data.msg);
 
-    var msg = {
+    let msg = {
       from: {
         name: data.name,
       },
