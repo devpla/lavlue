@@ -36,11 +36,14 @@ export default {
       const userData = {
         userImage: this.userImage,
         userName: this.userName,
-        time: new Date().getTime(),
       };
+
       if (userData.userName) {
         this.$store.dispatch("login", userData);
-        console.log(userData);
+        this.$router.push({
+          name: "chat",
+          params: { userData: userData },
+        });
       }
     },
   },
