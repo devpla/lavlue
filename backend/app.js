@@ -23,6 +23,7 @@ io.on("connection", function (socket) {
     let msg = {
       from: {
         name: data.name,
+        avatar: data.avatar,
       },
       msg: data.msg,
     };
