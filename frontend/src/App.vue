@@ -1,34 +1,60 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/chat">Chat</router-link>
+    <router-view class="container" />
+    <div class="app__brand">
+      <router-link to="/" class="app__logo">lavlue</router-link>
+      <div class="app__copyright">ⓒ 2021 Devpla. All Right Reserved.</div>
     </div>
-    <router-view />
   </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+@font-face {
+  font-family: "Golden Plains - Demo";
+  src: url("./assets/GoldenPlains.woff2") format("woff2"),
+    url("./assets/GoldenPlains.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-#nav {
-  padding: 30px;
+* {
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", sans-serif;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+body {
+  background-color: #cfcff4;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.container {
+  max-width: 375px;
+  height: 812px;
+  background-color: #ffffff;
+  margin: 5rem auto 0rem;
+  border-radius: 1.5rem;
+  box-shadow: 0px 1px 20px #9c9cc855;
+}
+
+.app__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app__logo {
+  font-family: "Golden Plains - Demo";
+  font-size: 4rem;
+  text-decoration: none;
+  margin-top: 3rem;
+  margin-bottom: -10px;
+  color: #ffffff;
+}
+
+.app__copyright {
+  font-size: 10px;
+  color: #ffffff;
 }
 </style>
