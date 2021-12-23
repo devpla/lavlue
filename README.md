@@ -1,4 +1,4 @@
-<img src="assets/lavlue.svg" align="left"/>
+<img src="assets/lavlue.svg"  />
 
 <hr>
 
