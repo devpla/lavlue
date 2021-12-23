@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <h1>This is Chat Room</h1>
-    <h2>{{ userData.userName }}님 안녕하세요.</h2>
+  <div class="chat">
+    <div class="chat__header">
+      <span> 안녕하세요. {{ userData.userName }}님! </span>
+    </div>
     <chat-list :msgs="msgData"></chat-list>
     <chat-form @submitMessage="sendMessage"></chat-form>
   </div>
@@ -20,8 +21,8 @@ export default {
     };
   },
   components: {
-    ChatList: ChatList,
-    ChatForm: ChatForm,
+    ChatList,
+    ChatForm,
   },
   computed: {
     ...mapState({
@@ -30,31 +31,64 @@ export default {
   },
   created() {
     this.userData = this.$route.params.userData;
+  },
 
+  mounted() {
     this.$socket.on("chat", (data) => {
       this.pushMsgData(data);
+
+      setTimeout(() => {
+        const element = document.getElementById("chat__body");
+        element.scrollTop = element.scrollHeight;
+      }, 0);
     });
   },
+
   methods: {
     ...mapMutations({
       pushMsgData: Constant.PUSH_MSG_DATA,
     }),
+
     sendMessage(msg) {
       const username = this.userData.userName;
+      const avatar = this.userData.userImage;
 
       this.pushMsgData({
         from: {
-          name: "나",
+          name: "DevplaCalledMe",
+          avatar: avatar,
         },
         msg,
-      }),
-        this.$sendMessage({
-          name: username,
-          msg,
-        });
+      });
+
+      this.$sendMessage({
+        name: username,
+        msg,
+        avatar: avatar,
+      });
+
+      setTimeout(() => {
+        const element = document.getElementById("chat__body");
+        element.scrollTop = element.scrollHeight;
+      }, 0);
     },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chat__header {
+  background: #ffffff;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 24px 24px 0px 0px;
+  padding: 1.8rem;
+  font-size: 16px;
+  font-weight: 800;
+}
+</style>
