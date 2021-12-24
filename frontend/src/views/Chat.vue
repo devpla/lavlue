@@ -1,7 +1,9 @@
 <template>
   <div class="chat">
     <div class="chat__header">
-      <span> 안녕하세요. {{ userData.userName }}님! </span>
+      <span class="chat__header__greetings">
+        안녕하세요. {{ userData.userName }}님!
+      </span>
     </div>
     <chat-list :msgs="msgData"></chat-list>
     <chat-form @submitMessage="sendMessage"></chat-form>
@@ -89,6 +91,10 @@ export default {
   border-radius: 24px 24px 0px 0px;
   padding: 1.8rem;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 700;
+}
+
+.chat__header__greetings {
+  color: #292929;
 }
 </style>

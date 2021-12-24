@@ -49,7 +49,7 @@ export default {
     isSamePerson(msg, prev) {
       if (prev === null) {
         return false;
-      } else if (prev && prev[0].from.name == msg.from.name) {
+      } else if (prev[0].from.name == msg.from.name) {
         return true;
       } else {
         return false;
@@ -58,7 +58,7 @@ export default {
   },
   created() {
     this.isSame = this.isSamePerson(this.msg, this.prev);
-    if (this.msg.from.avatar) {
+    if (!!this.msg && this.msg.from.avatar) {
       this.avatar = this.msg.from.avatar;
     }
   },
@@ -108,6 +108,7 @@ export default {
 .chat__yourmessage__user {
   font-size: 14px;
   font-weight: 700;
+  color: #292929;
   margin-top: 0;
   margin-block-end: 0rem;
 }
