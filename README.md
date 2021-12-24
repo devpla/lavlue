@@ -11,6 +11,22 @@
 
 
 
+```bash
+$ cd backend
+$ npm run start
+```
+
+```bash
+$ cd frontend
+$ npm run serve
+```
+
+
+
+<br/>
+
+
+
 ![](https://i.imgur.com/LlMPD8X.png)
 
 ![](assets/image.webp)
