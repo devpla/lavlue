@@ -13,11 +13,13 @@
 
 ```bash
 $ cd backend
+$ npm install
 $ npm run start
 ```
 
 ```bash
 $ cd frontend
+$ npm install
 $ npm run serve
 ```
 
