@@ -10,15 +10,15 @@ const io = require("socket.io")(server, {
 });
 
 // localhost:3000 서버에 접속하면 client로 메세지 전송
-app.get("/", function (req, res) {
+app.get("/", (req, res) => {
   res.send("Hello");
 });
 
 //connection event handler
-io.on("connection", function (socket) {
+io.on("connection", (socket) => {
   // client로부터의 메시지가 수신되면
   socket.on("chat", (data) => {
-    console.log("Message from %s: %s", data.name, data.msg);
+    console.log(`Message from ${data.name}: ${data.msg}`);
 
     let msg = {
       from: {
@@ -32,8 +32,8 @@ io.on("connection", function (socket) {
     socket.broadcast.emit("chat", msg);
   });
 
-  socket.on("disconnect", function () {
-    console.log("user disconnected: " + socket.name);
+  socket.on("disconnect", () => {
+    console.log(`user disconnected: ${socket.name}`);
   });
 });
 
