@@ -49,7 +49,7 @@ export default {
     isSamePerson(msg, prev) {
       if (prev === null) {
         return false;
-      } else if (prev[0].from.name == msg.from.name) {
+      } else if (prev[0]?.from.name == msg?.from.name) {
         return true;
       } else {
         return false;
@@ -58,8 +58,8 @@ export default {
   },
   created() {
     this.isSame = this.isSamePerson(this.msg, this.prev);
-    if (!!this.msg && this.msg.from.avatar) {
-      this.avatar = this.msg.from.avatar;
+    if (this.msg?.from.avatar) {
+      this.avatar = this.msg?.from.avatar;
     }
   },
 };
