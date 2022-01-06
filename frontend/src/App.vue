@@ -2,11 +2,22 @@
   <div id="app">
     <router-view class="container" />
     <div class="app__brand">
-      <router-link to="/" class="app__logo">lavlue</router-link>
+      <p @click="moveToHome" class="app__logo">lavlue</p>
       <div class="app__copyright">ⓒ 2021 Devpla. All Right Reserved.</div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    moveToHome() {
+      this.$router.push({ name: "login" });
+      this.$router.go(this.$router.currentRoute);
+    },
+  },
+};
+</script>
 
 <style>
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
